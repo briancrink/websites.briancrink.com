@@ -53,7 +53,7 @@ header .wrap{display:flex;flex-wrap:nowrap;align-items:center;justify-content:sp
 .status label{display:flex;gap:6px;align-items:center}
 .link{background:none;border:0;color:var(--teal);font-weight:600;text-decoration:underline;padding:0}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
-.card{background:#cde;border:1px solid var(--line);border-radius:14px;overflow:hidden;text-align:left;padding:0;transition:opacity .25s,filter .25s}
+.card{background:#cde;border:1px solid var(--line);border-radius:14px;overflow:hidden;text-align:left;padding:0;transition:opacity .45s ease,filter .25s,transform .45s ease}
 .card.dim{opacity:.3;filter:grayscale(1)}
 .card.hide{display:none}
 .ph{aspect-ratio:1/1;display:grid;place-items:center;font-size:3.2rem;position:relative}
@@ -65,6 +65,15 @@ header .wrap{display:flex;flex-wrap:nowrap;align-items:center;justify-content:sp
 .meta b{font-family:'Bricolage Grotesque';font-size:1rem;line-height:1.2}
 .meta span{font-size:.76rem;color:#3d566e;line-height:1.3}
 .badge{position:absolute;top:8px;left:8px;padding:3px 9px;border-radius:999px;font-size:.7rem;font-weight:600;color:#12304a;background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.8);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}}
+@keyframes pop{from{opacity:0;transform:translateY(14px) scale(.94)}}
+@keyframes bk{from{opacity:0}}
+main,footer{animation:fadeUp .7s ease both}
+.card.rv:not(.in){opacity:0;transform:translateX(-18px)}
+.card:active{transform:scale(.97)}
+@media(hover:hover){.card:hover{transform:translateY(-3px)}}
+dialog[open]{animation:pop .24s cubic-bezier(.2,.9,.3,1.15) both}
+dialog[open]::backdrop{animation:bk .24s ease both}
 .empty{padding:30px;text-align:center;color:var(--mute)}
 section.block{padding:32px 0 8px}
 section.block h2{font-size:1.5rem;margin-bottom:12px}
@@ -89,7 +98,7 @@ dialog::backdrop{background:rgba(10,25,24,.6)}
 .steps{margin:8px 0 14px;padding-left:20px;color:var(--mute)}
 .x{position:absolute;top:10px;right:10px;background:var(--surf);border:0;border-radius:999px;width:36px;height:36px;font-size:1.2rem}
 .ok{color:var(--teal);font-weight:600;margin-top:8px}
-@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;animation:none!important}}
 </style>
 </head>
 <body>
@@ -184,6 +193,9 @@ function order(){
  var sel=Object.keys(st.types);
  if(sel.length)a=a.filter(function(p){return st.types[p.type]}).concat(a.filter(function(p){return!st.types[p.type]}));
  return a}
+var reduce=matchMedia("(prefers-reduced-motion:reduce)").matches,io=null;
+if(!reduce&&window.IntersectionObserver)io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;var el=e.target;var row=[].slice.call($("grid").children).filter(function(c){return c.offsetParent&&c.offsetTop===el.offsetTop}).sort(function(a,b){return a.offsetLeft-b.offsetLeft});el.style.transitionDelay=Math.max(0,row.indexOf(el))*70+"ms";el.classList.add("in");io.unobserve(el);setTimeout(function(){el.style.transitionDelay=""},900)})},{threshold:.12});
+function reveal(){if(!io)return;io.disconnect();document.querySelectorAll("#grid .card").forEach(function(c){c.classList.add("rv");io.observe(c)})}
 function build(){
  $("cats").innerHTML=TYPES.map(function(t){var n=PETS.filter(function(p){return p.type===t}).length;
   return'<button class="cat" data-t="'+t+'" aria-pressed="'+!!st.types[t]+'">'+(t==="Puppy"?"Puppies":t+"s")+' <b>'+n+'</b>'+'</button>'}).join("");
@@ -192,7 +204,7 @@ function build(){
  $("grid").innerHTML=order().map(function(p){
   var h=hue(p);
   return'<button class="card" data-id="'+p.id+'" style="background:'+col(p)+'" aria-label="'+p.name+', '+p.type+'"><div class="ph" role="img" aria-label="Photo placeholder">'+p.emoji+'<small>photo</small></div>'+(p.group!=="Other"?'<span class="badge">'+p.group+'</span>':'')+'<div class="meta"><b>'+p.name+'</b><span>'+p.type+' · '+(p.age<1?Math.round(p.age*12)+' mo':p.age+' yr')+' · '+p.size+'</span><span>'+gw(p)+'</span></div></button>'}).join("");
- paint()}
+ reveal();paint()}
 function paint(){
  var any=Object.keys(st.types).length||Object.keys(st.traits).some(function(k){return st.traits[k]})||st.q;
  var n=0;
