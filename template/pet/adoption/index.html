@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Hearthside Paws – Find your Companion (template)</title>
+<title>Pet Adoption Clinic – Find your Companion (template)</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;600&display=swap">
 <style>
 :root{color-scheme:light;--bg:#eef6fd;--surf:#fbfdff;--ink:#12304a;--mute:#47627c;--line:#cfe2f3;--teal:#2a6cb0;--gold:#f2b632;--onteal:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -20,8 +20,8 @@ button{font:inherit;color:inherit;cursor:pointer}
 header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
 header .wrap{display:flex;flex-wrap:nowrap;align-items:center;justify-content:space-between;gap:8px;padding-top:8px;padding-bottom:8px}
 .nav{display:flex;gap:4px;flex:1 1 auto;min-width:0;justify-content:flex-end;align-items:stretch}.nav .btn{flex:0 1 auto;min-width:0;padding:7px 8px;font-size:.74rem;line-height:1.1;white-space:normal;text-align:center}
-@media(max-width:350px){.logo{font-size:.76rem;max-width:62px}.nav .btn{font-size:.66rem;padding:7px 5px}}
-.logo{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:.86rem;line-height:1.05;max-width:84px;flex:0 0 auto}.pw{display:none}
+@media(max-width:350px){.pawi{display:none}.logo{font-size:.76rem}.logo span{max-width:62px}.nav .btn{font-size:.66rem;padding:7px 5px}}
+.logo{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:.84rem;line-height:1.05;display:flex;align-items:center;gap:6px;flex:0 0 auto}.logo span{max-width:86px}.pawi{width:24px;height:24px;flex:0 0 auto;color:var(--teal)}
 .btn{border:0;border-radius:999px;padding:9px 18px;font-weight:600;background:var(--teal);color:var(--onteal)}
 .btn.blue{background:#2563c9;color:#fff}.btn.purple{background:#cdb8f5;color:#2a1650}.btn.pink{background:#d6407f;color:#fff}.btn.gold{background:var(--gold);color:#14302f}
 .btn.ghost{background:transparent;border:1.5px solid var(--line)}
@@ -79,7 +79,7 @@ details.test{margin-top:14px;background:var(--surf);border:1px dashed var(--line
 .bar{position:fixed;left:0;right:0;bottom:0;z-index:6;display:flex;gap:8px;padding:8px 12px calc(8px + env(safe-area-inset-bottom,0px));background:var(--bg);border-top:1px solid var(--line)}
 .bar a{flex:1;text-align:center;text-decoration:none;color:var(--ink);font-weight:600;padding:10px 0;border-radius:10px;background:var(--surf);border:1px solid var(--line)}
 .bar a.p{background:var(--teal);color:var(--onteal);border-color:var(--teal)}
-@media(min-width:760px){.nav{flex:0 0 auto;gap:8px}.nav .btn{padding:9px 18px;font-size:.95rem;white-space:nowrap}.logo{max-width:none;font-size:1.15rem}.pw{display:inline}.cats,.chips{display:flex;flex-wrap:wrap;justify-content:center;max-width:none}.ways{grid-template-columns:repeat(3,1fr)}.grid{grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px}}
+@media(min-width:760px){.nav{flex:0 0 auto;gap:8px}.nav .btn{padding:9px 18px;font-size:.95rem;white-space:nowrap}.logo{font-size:1.15rem}.logo span{max-width:none}.pawi{width:30px;height:30px}.cats,.chips{display:flex;flex-wrap:wrap;justify-content:center;max-width:none}.ways{grid-template-columns:repeat(3,1fr)}.grid{grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px}}
 dialog{border:0;border-radius:18px;padding:0;max-width:520px;width:calc(100% - 24px);background:var(--surf);color:var(--ink)}
 dialog::backdrop{background:rgba(10,25,24,.6)}
 .dbody{padding:16px 18px 18px}
@@ -93,7 +93,7 @@ dialog::backdrop{background:rgba(10,25,24,.6)}
 </style>
 </head>
 <body>
-<header><div class="wrap"><span class="logo"><i class="pw" style="font-style:normal">🐾 </i>Hearthside Paws</span><nav class="nav" aria-label="Sections"><button class="btn blue" data-go="browse">Adopt</button><button class="btn pink" data-go="foster">Foster</button><button class="btn purple" data-go="stray">Found a Stray?</button><button class="btn gold" data-go="give">Donate</button></nav></div></header>
+<header><div class="wrap"><span class="logo"><svg class="pawi" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><g transform="translate(10 21) rotate(-20)"><g id="pp"><ellipse cx="0" cy="3" rx="4.3" ry="3.5"/><ellipse cx="-4.7" cy="-2.2" rx="1.7" ry="2.2" transform="rotate(-20 -4.7 -2.2)"/><ellipse cx="-1.7" cy="-5" rx="1.7" ry="2.2"/><ellipse cx="1.7" cy="-5" rx="1.7" ry="2.2"/><ellipse cx="4.7" cy="-2.2" rx="1.7" ry="2.2" transform="rotate(20 4.7 -2.2)"/></g></g><g transform="translate(22 10) rotate(20)"><g ><ellipse cx="0" cy="3" rx="4.3" ry="3.5"/><ellipse cx="-4.7" cy="-2.2" rx="1.7" ry="2.2" transform="rotate(-20 -4.7 -2.2)"/><ellipse cx="-1.7" cy="-5" rx="1.7" ry="2.2"/><ellipse cx="1.7" cy="-5" rx="1.7" ry="2.2"/><ellipse cx="4.7" cy="-2.2" rx="1.7" ry="2.2" transform="rotate(20 4.7 -2.2)"/></g></g></svg><span>Pet Adoption Clinic</span></span><nav class="nav" aria-label="Sections"><button class="btn blue" data-go="browse">Adopt</button><button class="btn pink" data-go="foster">Foster</button><button class="btn purple" data-go="stray">Found a Stray?</button><button class="btn gold" data-go="give">Donate</button></nav></div></header>
 
 <main class="wrap">
 <div class="intro"><h1>Find your Companion</h1><p><b>Next adoption day:</b> Saturday 11am–2pm at Maple Street Pet Supply. <button class="link" id="attendBtn">See who's attending</button></p></div>
@@ -129,7 +129,7 @@ dialog::backdrop{background:rgba(10,25,24,.6)}
 </ul>
 <div id="stats"></div></details>
 </main>
-<footer><div class="wrap">Hearthside Paws is a mock nonprofit. All pets and details are sample data. Contact: hello@example.org</div></footer>
+<footer><div class="wrap">Pet Adoption Clinic is a mock nonprofit. All pets and details are sample data. Contact: hello@example.org</div></footer>
 
 <dialog id="dlg" aria-label="Pet details"><div id="dc"></div></dialog>
 
